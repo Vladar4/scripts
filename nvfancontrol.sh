@@ -3,6 +3,9 @@
 # Nvidia video card fan speed control script
 #
 # Requirements: nvidia-settings
+# and add
+#   Option "Coolbits" "4"
+# to your Xorg configuration in the "Device" section.
 #
 # Run this script in autostart
 
