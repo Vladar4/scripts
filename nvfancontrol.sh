@@ -18,11 +18,11 @@ plus_speed=10   # if temperature > $safe_temp set fan speed to
 while true; do
     current_temp=`nvidia-settings -t -q [GPU:0]/GPUCoreTemp`
     if [ "$current_temp" -le $safe_temp ]; then
-        nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUCurrentFanSpeed=$normal_speed
+        nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUTargetFanSpeed=$normal_speed
     else
         speed=$(( $plus_speed + $current_temp ))
         if [ "$speed" -gt 100 ]; then speed=100; fi
-        nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUCurrentFanSpeed=$speed
+        nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUTargetFanSpeed=$speed
     fi
     sleep "$interval"
 done
